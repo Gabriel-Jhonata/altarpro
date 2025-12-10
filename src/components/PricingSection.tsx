@@ -1,18 +1,19 @@
-import { Star, Crown, Check, Gift, Clock, Trophy } from "lucide-react";
+import { Sun, Crown, Check, Clock, Trophy, Sparkles } from "lucide-react";
 
-const basicFeatures = [
-  "35 Livros de Colorir em PDF",
-  "Temas Bíblicos Variados",
-  "Acesso Vitalício",
-  "Suporte por WhatsApp",
-  "Garantia de 7 dias",
+const luzFeatures = [
+  "35 Livros de Colorir Digitais",
+  "Suporte por E-mail",
+  "Garantia de 7 Dias",
+  "DIREITO DE REVENDA",
 ];
 
-const premiumBonuses = [
-  { title: "PLANER DEVOCIONAL INFANTIL", subtitle: "EXCLUSIVO" },
-  { title: "LIVRO DE ATIVIDADES CRISTÃS", subtitle: "EXCLUSIVO" },
-  { title: "DESAFIO BÍBLICO DE 7 DIAS", subtitle: "EXCLUSIVO" },
-  { title: "CARTÕES BÍBLICOS PARA MEMORIZAÇÃO", subtitle: "EXCLUSIVO" },
+const altarProFeatures = [
+  "TUDO do Plano LUZ",
+  "TUDO do Plano CHAMA",
+  "CONTEÚDO COMPLETO",
+  "Atualizações Vitalícias",
+  "Suporte Prioritário",
+  "DIREITO DE REVENDA",
 ];
 
 export const PricingSection = () => {
@@ -27,41 +28,46 @@ export const PricingSection = () => {
     <section id="pricing" className="py-12 bg-card">
       <div className="container mx-auto px-4 lg:px-10">
         {/* Limited Offer Alert */}
-        <div className="bg-gradient-danger text-white py-3 px-6 rounded-full flex items-center justify-center gap-2 mx-auto w-fit mb-8 font-semibold text-sm">
+        <div className="bg-gradient-danger text-white py-3 px-6 rounded-full flex items-center justify-center gap-2 mx-auto w-fit mb-8 font-semibold text-sm animate-pulse">
           <Clock className="w-4 h-4" />
           <span>OFERTA LIMITADA - Apenas no dia {formattedDate}</span>
         </div>
 
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 text-foreground">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 text-foreground animate-fade-in">
           Escolha Sua Oferta Especial
         </h2>
-        <p className="text-center text-muted-foreground text-lg mb-8">
+        <p className="text-center text-muted-foreground text-lg mb-8 animate-fade-in">
           Livros de qualidade profissional para enriquecer seus momentos de fé
         </p>
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {/* Basic Package */}
-          <div className="bg-card rounded-2xl p-6 shadow-lg hover:-translate-y-1 transition-transform animate-fade-in-up">
-            <div className="flex items-center justify-center gap-3 mb-6 mt-2">
-              <Star className="w-7 h-7 text-accent" />
-              <h3 className="text-xl font-bold text-foreground">Pacote Básico</h3>
+          {/* Plano LUZ */}
+          <div className="bg-card rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-all duration-300 animate-fade-in-up border border-border/50 hover:shadow-xl hover:border-accent/30">
+            <div className="flex flex-col items-center justify-center gap-2 mb-6 mt-2">
+              <span className="text-muted-foreground text-sm uppercase tracking-wider">Plano</span>
+              <div className="flex items-center gap-2">
+                <Sun className="w-8 h-8 text-amber-400" />
+                <h3 className="text-2xl font-bold text-foreground">LUZ</h3>
+              </div>
             </div>
 
             <div className="text-center mb-6">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-destructive line-through">R$ 47,00</span>
-                <span className="bg-success text-success-foreground text-xs px-2 py-1 rounded-lg font-semibold">
-                  -79%
-                </span>
+              <div className="flex items-center justify-center gap-1">
+                <span className="text-muted-foreground text-lg">R$</span>
+                <span className="text-5xl font-extrabold text-foreground">10,00</span>
               </div>
-              <div className="text-4xl font-extrabold text-success my-2">R$ 10,00</div>
-              <p className="text-muted-foreground text-sm">Você economiza R$ 37,00</p>
+              <p className="text-accent font-medium mt-2">Acesso Vitalício</p>
+              <p className="text-muted-foreground text-sm mt-1">Uma parcela e pronto!</p>
             </div>
 
             <div className="space-y-3 mb-6">
-              {basicFeatures.map((feature) => (
-                <div key={feature} className="flex items-center gap-3">
+              {luzFeatures.map((feature, index) => (
+                <div 
+                  key={feature} 
+                  className="flex items-center gap-3 animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
                   <Check className="w-5 h-5 text-success flex-shrink-0" />
                   <span className="text-foreground">{feature}</span>
                 </div>
@@ -69,65 +75,61 @@ export const PricingSection = () => {
             </div>
 
             <a
-              href="https://pay.kirvano.com/29311415-f6f4-4d68-a30a-6ba8d38fc386"
-              className="block w-full bg-gradient-cta text-success-foreground py-4 rounded-2xl font-semibold text-center animate-pulse-cta hover:scale-[1.02] transition-transform"
+              href="https://pay.cakto.com.br/y2dp3os_680781"
+              className="block w-full bg-gradient-cta text-success-foreground py-4 rounded-2xl font-semibold text-center animate-pulse-cta hover:scale-105 transition-transform"
             >
-              QUERO O PACOTE BÁSICO
+              QUERO O PLANO LUZ
             </a>
           </div>
 
-          {/* Premium Package */}
-          <div className="bg-card rounded-2xl p-6 shadow-lg border-4 border-accent relative md:scale-105 hover:-translate-y-1 transition-transform animate-fade-in-up">
+          {/* Plano ALTAR PRO */}
+          <div className="bg-card rounded-2xl p-6 shadow-lg border-4 border-accent relative md:scale-105 hover:-translate-y-2 transition-all duration-300 animate-fade-in-up hover:shadow-2xl">
             {/* Best Seller Badge */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-gold text-white py-2 px-4 rounded-full text-xs font-semibold flex items-center gap-2 whitespace-nowrap">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-gold text-white py-2 px-4 rounded-full text-xs font-semibold flex items-center gap-2 whitespace-nowrap animate-bounce">
               <Trophy className="w-4 h-4" />
               MAIS VENDIDO
             </div>
 
-            <div className="flex items-center justify-center gap-3 mb-6 mt-4">
-              <Crown className="w-7 h-7 text-accent" />
-              <h3 className="text-xl font-bold text-foreground">Pacote Premium</h3>
+            <div className="flex flex-col items-center justify-center gap-2 mb-6 mt-4">
+              <span className="text-muted-foreground text-sm uppercase tracking-wider">Plano</span>
+              <div className="flex items-center gap-2">
+                <Crown className="w-8 h-8 text-accent" />
+                <h3 className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">ALTAR PRO</h3>
+                <Sparkles className="w-5 h-5 text-accent animate-pulse" />
+              </div>
             </div>
 
             <div className="text-center mb-6">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-destructive line-through">R$ 256,00</span>
-                <span className="bg-success text-success-foreground text-xs px-2 py-1 rounded-lg font-semibold">
-                  -93%
-                </span>
+              <div className="flex items-center justify-center gap-1">
+                <span className="text-muted-foreground text-lg">R$</span>
+                <span className="text-5xl font-extrabold text-foreground">15,90</span>
               </div>
-              <div className="text-4xl font-extrabold text-success my-2">R$ 17,00</div>
-              <p className="text-muted-foreground text-sm">Você economiza R$ 239,00</p>
-            </div>
-
-            <div className="bg-success/10 text-success font-semibold py-3 px-4 rounded-xl text-center text-sm mb-4">
-              TUDO DO PACOTE BÁSICO +
+              <p className="text-accent font-medium mt-2">Acesso Vitalício</p>
+              <p className="text-muted-foreground text-sm mt-1">Uma parcela e pronto!</p>
             </div>
 
             <div className="space-y-3 mb-6">
-              {premiumBonuses.map((bonus) => (
-                <div
-                  key={bonus.title}
-                  className="flex items-center gap-3 bg-accent/10 p-3 rounded-xl"
+              {altarProFeatures.map((feature, index) => (
+                <div 
+                  key={feature} 
+                  className="flex items-center gap-3 animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <Gift className="w-5 h-5 text-accent flex-shrink-0" />
-                  <div>
-                    <strong className="text-foreground text-sm block">+ {bonus.title}</strong>
-                    <span className="text-muted-foreground text-xs">{bonus.subtitle}</span>
-                  </div>
+                  <Check className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="text-foreground font-medium">{feature}</span>
                 </div>
               ))}
             </div>
 
             <a
-              href="https://pay.kirvano.com/5972d79d-b948-435d-8e0f-4e045f73b586"
-              className="block w-full bg-gradient-gold text-white py-4 rounded-2xl font-semibold text-center animate-pulse-gold hover:scale-[1.02] transition-transform"
+              href="https://pay.cakto.com.br/rs6wvr9"
+              className="block w-full bg-gradient-gold text-white py-4 rounded-2xl font-semibold text-center animate-pulse-gold hover:scale-105 transition-transform"
             >
-              QUERO O PACOTE PREMIUM
+              QUERO O PLANO ALTAR PRO
             </a>
 
             <p className="text-center text-muted-foreground text-sm mt-4">
-              +500 pessoas já escolheram este pacote
+              +500 pessoas já escolheram este plano
             </p>
           </div>
         </div>
