@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const productImages = [
@@ -42,6 +42,8 @@ interface ProductsGalleryProps {
 export const ProductsGallery = ({ onCtaClick }: ProductsGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(2);
+  const [isPaused, setIsPaused] = useState(false);
+  const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,11 +57,44 @@ export const ProductsGallery = ({ onCtaClick }: ProductsGalleryProps) => {
   const maxIndex = Math.max(0, productImages.length - itemsPerView);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + itemsPerView));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - itemsPerView));
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const startAutoSlide = () => {
+      if (autoSlideRef.current) {
+        clearInterval(autoSlideRef.current);
+      }
+      autoSlideRef.current = setInterval(() => {
+        if (!isPaused) {
+          nextSlide();
+        }
+      }, 3000);
+    };
+
+    startAutoSlide();
+
+    return () => {
+      if (autoSlideRef.current) {
+        clearInterval(autoSlideRef.current);
+      }
+    };
+  }, [isPaused, maxIndex]);
+
+  const handleManualNav = (direction: 'prev' | 'next') => {
+    setIsPaused(true);
+    if (direction === 'prev') {
+      prevSlide();
+    } else {
+      nextSlide();
+    }
+    // Resume auto-slide after 5 seconds of inactivity
+    setTimeout(() => setIsPaused(false), 5000);
   };
 
   return (
@@ -73,16 +108,20 @@ export const ProductsGallery = ({ onCtaClick }: ProductsGalleryProps) => {
         </p>
 
         {/* Carousel */}
-        <div className="relative max-w-4xl mx-auto">
+        <div 
+          className="relative max-w-4xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <button
-            onClick={prevSlide}
+            onClick={() => handleManualNav('prev')}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-10 w-10 h-10 md:w-12 md:h-12 bg-card/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-success hover:text-success-foreground transition-all"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
           <button
-            onClick={nextSlide}
+            onClick={() => handleManualNav('next')}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-10 w-10 h-10 md:w-12 md:h-12 bg-card/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-success hover:text-success-foreground transition-all"
           >
             <ChevronRight className="w-5 h-5" />
@@ -108,11 +147,30 @@ export const ProductsGallery = ({ onCtaClick }: ProductsGalleryProps) => {
               ))}
             </div>
           </div>
+
+          {/* Progress dots */}
+          <div className="flex justify-center mt-4 gap-1">
+            {[...Array(Math.min(10, Math.ceil(productImages.length / itemsPerView)))].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentIndex(index * itemsPerView);
+                  setIsPaused(true);
+                  setTimeout(() => setIsPaused(false), 5000);
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  Math.floor(currentIndex / itemsPerView) === index 
+                    ? 'bg-success w-6' 
+                    : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <button
           onClick={onCtaClick}
-          className="block mx-auto mt-8 bg-gradient-cta text-success-foreground px-8 py-4 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg"
+          className="block mx-auto mt-8 bg-gradient-cta text-success-foreground px-8 py-4 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg animate-pulse-cta"
         >
           QUERO VER AS OFERTAS
         </button>
