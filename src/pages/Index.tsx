@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useRef } from "react";
+import { HeroSection } from "@/components/HeroSection";
+import { WhyChooseSection } from "@/components/WhyChooseSection";
+import { ProductsGallery } from "@/components/ProductsGallery";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { PricingSection } from "@/components/PricingSection";
+import { FAQSection } from "@/components/FAQSection";
+import { GuaranteeSection } from "@/components/GuaranteeSection";
+import { Footer } from "@/components/Footer";
+import { PurchaseNotification } from "@/components/PurchaseNotification";
 
 const Index = () => {
+  const pricingRef = useRef<HTMLDivElement>(null);
+
+  const scrollToPricing = () => {
+    pricingRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <main className="min-h-screen">
+      <PurchaseNotification />
+      <HeroSection onCtaClick={scrollToPricing} />
+      <WhyChooseSection onCtaClick={scrollToPricing} />
+      <ProductsGallery onCtaClick={scrollToPricing} />
+      <TestimonialsSection />
+      <div ref={pricingRef}>
+        <PricingSection />
       </div>
-    </div>
+      <FAQSection onCtaClick={scrollToPricing} />
+      <GuaranteeSection />
+      <Footer />
+    </main>
   );
 };
 
