@@ -94,7 +94,7 @@ export const PricingSection = () => {
               <span className="text-muted-foreground text-sm uppercase tracking-wider">Plano</span>
               <div className="flex items-center gap-2">
                 <Crown className="w-8 h-8 text-accent" />
-                <h3 className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">ALTAR PRO</h3>
+                <h3 className="text-2xl font-bold text-accent">ALTAR PRO</h3>
                 <Sparkles className="w-5 h-5 text-accent animate-pulse" />
               </div>
             </div>
