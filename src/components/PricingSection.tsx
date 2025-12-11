@@ -1,13 +1,13 @@
 import { Sun, Crown, Check, Clock, Trophy, Sparkles } from "lucide-react";
 
-const luzFeatures = [https://pay.cakto.com.br/y2dp3os_680781?affiliate=jUNuovvt
+const luzFeatures = ["https://pay.cakto.com.br/y2dp3os_680781?affiliate=jUNuovvt"
   "35 Livros de Colorir Digitais",
   "Suporte por E-mail",
   "Garantia de 7 Dias",
   "DIREITO DE REVENDA",
 ];
 
-const altarProFeatures = [https://pay.cakto.com.br/rs6wvr9?affiliate=mxvwDEwG
+const altarProFeatures = ["https://pay.cakto.com.br/rs6wvr9?affiliate=mxvwDEwG"
   "TUDO do Plano LUZ",
   "TUDO do Plano CHAMA",
   "CONTEÚDO COMPLETO",
