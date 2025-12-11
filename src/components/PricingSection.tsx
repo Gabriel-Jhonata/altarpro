@@ -75,7 +75,7 @@ export const PricingSection = () => {
             </div>
 
             <a
-              href={https://pay.cakto.com.br/y2dp3os_680781?affiliate=jUNuovvt}
+              href="https://pay.cakto.com.br/y2dp3os_680781?affiliate=jUNuovvt"
               className="block w-full bg-gradient-cta text-success-foreground py-4 rounded-2xl font-semibold text-center animate-pulse-cta hover:scale-105 transition-transform"
             >
               QUERO O PLANO LUZ
@@ -122,7 +122,7 @@ export const PricingSection = () => {
             </div>
 
             <a
-              href={https://pay.cakto.com.br/rs6wvr9?affiliate=mxvwDEwG}
+              href="https://pay.cakto.com.br/rs6wvr9?affiliate=mxvwDEwG"
               className="block w-full bg-gradient-gold text-white py-4 rounded-2xl font-semibold text-center animate-pulse-gold hover:scale-105 transition-transform"
             >
               QUERO O PLANO ALTAR PRO
